@@ -1,0 +1,9 @@
+.buttons{
+  display:flex;
+  margin-top: 20px;
+}
+button{
+  border: unset;
+  cursor: pointer;
+  user-select: none;
+}
