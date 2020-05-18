@@ -1,9 +1,17 @@
-table{
+table {
   border-collapse: collapse;
   border: 1px solid grey;
+  max-width: 540px;
 }
-td,th{
+td,
+th {
   padding: 10px;
   border: 1px solid grey;
   text-align: center;
+}
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
 }

@@ -28,31 +28,33 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-          placeholder="Enter Asteroid ID"
-          value={this.state.id}
-          onChange={(e) => {
-            this.setState({ id: e.target.value });
-          }}
-        />
-        <div className="buttons">
-          <button
-            style={{ opacity: this.state.id ? "1" : "0.5" }}
-            onClick={() => {
-              this.state.id && this.redirect(this.state.id);
+        <form className="parent">
+          <input
+            type="text"
+            placeholder="Enter Asteroid ID"
+            value={this.state.id}
+            onChange={(e) => {
+              this.setState({ id: e.target.value });
             }}
-          >
-            Submit
-          </button>
-          <button
-            onClick={() => {
-              this.redirect(false);
-            }}
-          >
-            Random Astroid
-          </button>
-        </div>
+          />
+          <div className="buttons">
+            <button
+              style={{ opacity: this.state.id ? "1" : "0.5" }}
+              onClick={() => {
+                this.state.id && this.redirect(this.state.id);
+              }}
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => {
+                this.redirect(false);
+              }}
+            >
+              Random Astroid
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

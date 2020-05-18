@@ -16,11 +16,17 @@ class Astroid extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     let res = {};
-    if (this.props.location && this.props.location.state.id) {
-      res = await Axios.get(
+    if (
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.id
+    ) {
+      await Axios.get(
         `https://api.nasa.gov/neo/rest/v1/neo/${this.props.location.state.id}?api_key=${Key}`
       ).then(
-        () => {},
+        (result) => {
+          res = result;
+        },
         (err) => {
           if (err.response.status) {
             this.setState({
@@ -36,7 +42,6 @@ class Astroid extends React.Component {
       let data = random.data.near_earth_objects;
       let size = data ? data.length : 0;
       let randomNumber = Math.floor(Math.random(size) * size);
-      console.log(randomNumber, data[randomNumber].id);
       if (data[randomNumber] && data[randomNumber].id) {
         let id = data[randomNumber].id;
         res = await Axios.get(
@@ -46,16 +51,25 @@ class Astroid extends React.Component {
     }
     this.setState({ loading: false });
     if (res) {
-      console.log(res.data);
       this.setState({ data: res.data });
     }
   }
   render() {
     return (
       <div>
+        {!this.state.loading && (
+          <div
+            className="back"
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
+            {" < Back"}
+          </div>
+        )}
         {this.state.loading ? (
           "LOADING....."
-        ) : this.state.error && !this.state.data.id ? (
+        ) : this.state.error && (!this.state.data || !this.state.data.id) ? (
           "Invalid Astroid Id"
         ) : (
           <div>
@@ -68,8 +82,17 @@ class Astroid extends React.Component {
                 </tr>
                 <tr>
                   <td>{this.state.data && this.state.data.name}</td>
-                  <td><a href={this.state.data && this.state.data.nasa_jpl_url}>{this.state.data && this.state.data.nasa_jpl_url}</a></td>
-                  <td>{this.state.data && this.state.data.is_potentially_hazardous_asteroid ? "Yes" : "No"}</td>
+                  <td>
+                    <a href={this.state.data && this.state.data.nasa_jpl_url}>
+                      {this.state.data && this.state.data.nasa_jpl_url}
+                    </a>
+                  </td>
+                  <td>
+                    {this.state.data &&
+                    this.state.data.is_potentially_hazardous_asteroid
+                      ? "Yes"
+                      : "No"}
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -7,10 +7,12 @@ import Astroid from "./views/Astroid"
 function App() {
   return (
     <div className="App">
-     <Switch>
+    <div className="super">
+    <Switch>
        <Route exact path="/" component={Home}/>
        <Route exact path="/astroid" component={Astroid}/>
      </Switch>
+    </div>
     </div>
   );
 }
