@@ -1,25 +1,25 @@
-.buttons{
-  display:flex;
+.buttons {
+  display: flex;
   justify-content: space-between;
   margin-top: 20px;
   width: 100%;
 }
-button{
+button {
   border: unset;
   cursor: pointer;
   user-select: none;
   height: 50px;
   width: calc(50% - 15px);
 }
-button:focus{
+button:focus {
   outline: unset;
 }
-input{
+input {
   height: 50px;
-  padding:15px;
+  padding: 15px;
 }
-.parent{
-  width:320px;
+.parent {
+  width: 320px;
   display: flex;
   flex-direction: column;
 }

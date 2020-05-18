@@ -39,7 +39,10 @@ class Home extends React.Component {
           />
           <div className="buttons">
             <button
-              style={{ opacity: this.state.id ? "1" : "0.5" }}
+              style={{
+                opacity: this.state.id ? "1" : "0.5",
+                pointerEvents: this.state.id ? "unset" : "none",
+              }}
               onClick={() => {
                 this.state.id && this.redirect(this.state.id);
               }}

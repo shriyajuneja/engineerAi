@@ -4,10 +4,10 @@
   align-items: center;
   min-height: 100vh;
 }
-*{
+* {
   box-sizing: border-box;
 }
-.super{
+.super {
   width: 600px;
   margin: auto;
   border-radius: 18px;
@@ -17,4 +17,10 @@
   align-items: center;
   height: 600px;
   position: relative;
+}
+@media only screen and (max-width: 600px) {
+  .super {
+    box-shadow: unset;
+    width: 100%;
+  }
 }
